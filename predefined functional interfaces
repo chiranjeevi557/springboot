@@ -1,0 +1,102 @@
+consumer interface:
+It will take object as an input and perform some validations and doesn't return anything.
+It has two methods
+1. void accept(T t);
+2. default Consumer<T> andThen(Consumer<? super T> after) {
+        Objects.requireNonNull(after);
+        return (T t) -> { accept(t); after.accept(t); };
+    }
+    
+Ex:
+Consumer<String> consumer=new Consumer<String>() {
+    @Override
+    public void accept(String s) {
+        System.out.println("chiru");
+    }
+};
+The above one is without lamda expression
+Consumer<String> consumer=(s) ->System.out.println(s);
+consumer.accept("chiru");
+The above one is with lamda expression.
+List<String> data=Arraylist.of(1,2,3,4,5,6);
+data.foreach(i->sout(i));
+
+Supplier interface: 
+
+This interface doesn't have any parameters but it returns any object
+    T get();
+Ex:
+Supplier<String> stringSupplier=()-> {return "chiru";};
+        System.out.println(stringSupplier.get());
+        
+Ex:
+private Supplier<List<Data>> data(){
+Supplier<List<Data>> stringSupplier=()-> {
+List<Data> data=new Arraylist();
+data.add(new Data(10,"chiru","naidu"))
+data.add(new Data(20,''prasad","naidu"))
+retun data;
+}
+return stringSupplier;
+};
+
+data().get();
+
+Functional Interface:
+The method in this interface will accept only one parameter and it has return type.
+R apply(T t);
+T-input of the function
+R-return type of the function
+Ex: Function<String,String>function=(t)->{return t;};
+        System.out.println(function.apply("chiru"));
+Function<Integer,Integer>function=(t)->{
+            if (t%2==0){
+                return t;
+            }else {
+                return t+1;
+            }
+        };
+        System.out.println(function.apply(10))
+        
+ predicate Interface:
+ 
+ This interface has test method which takes object as a input and it gives Boolean as a output
+ 
+     boolean test(T t);
+Predicate<Integer> predicate=(s)->{
+            if(s%2==0)
+            {
+                return true;
+            }else
+            {
+                return false;
+            }
+        };
+
+        System.out.println(predicate.test(10));
+        
+Ex:
+List<Integer> data= List.of(1,20,10,4,3);
+        Predicate<Integer>predicate=(i)->i>0;
+     List<Integer> updateddata =  data.stream().filter(predicate).collect(Collectors.toList());
+        System.out.println(updateddata);
+        
+If we have muliple conditions then
+ List<Integer> data= List.of(1,20,10,4,3);
+        Predicate<Integer>predicate=(i)->i>0;
+        Predicate<Integer>predicate1=(i)->i%2==0;
+     List<Integer> updateddata =  data.stream().filter(predicate.and(predicate1)).collect(Collectors.toList());
+        System.out.println(updateddata);
+
+If we have muliple conditions and want to use or condition
+ List<Integer> data= List.of(1,20,10,4,3);
+        Predicate<Integer>predicate=(i)->i>0;
+        Predicate<Integer>predicate1=(i)->i%2==0;
+     List<Integer> updateddata =  data.stream().filter(predicate.or(predicate1)).collect(Collectors.toList());
+        System.out.println(updateddata);
+        
+        
+        
+        
+
+    
