@@ -19,7 +19,7 @@ Consumer<String> consumer=(s) ->System.out.println(s);
 consumer.accept("chiru");
 The above one is with lamda expression.
 List<String> data=Arraylist.of(1,2,3,4,5,6);
-data.foreach(i->sout(i));
+data.foreach(i->sout(i)); or data.foreach(system.out::println)
 
 Supplier interface: 
 
