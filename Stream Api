@@ -1,0 +1,20 @@
+Stream represents a sequence of objects from the source which supports aggregate operations(map,filter,limit,reduce,find etc).
+It uses java.util.stream
+on the top of stream resource we will do filter,sort,map,collect operations.
+
+1.Filter:
+Filter allows predicate functional interface only
+
+        List<Integer> data= List.of(1,20,10,4,3);
+    //  data.stream().forEach(System.out::println);
+      data.stream().filter(i->i%2==0).collect(Collectors.toList()).forEach(System.out::println);
+      
+2.sorting list
+
+        //ascending order in two ways
+        data.stream().sorted(Comparator.naturalOrder()).collect(Collectors.toList()).forEach(System.out::println);
+       data.stream().sorted((i,j)->i.compareTo(j)).collect(Collectors.toList()).forEach(System.out::println);
+       //Descending order in two ways
+       data.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()).forEach(System.out::println);
+       data.stream().sorted((i,j)->j.compareTo(i)).collect(Collectors.toList()).forEach(System.out::println);
+       
